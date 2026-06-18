@@ -21,3 +21,9 @@ Claude Code plugin: english-vocab-hook. Extracts difficult English vocabulary fr
 ## Development / Testing
 
 @README.md
+
+## Commit Rules
+
+- コミット前に必ず `cd vocab-mcp && bun test && tsc --noEmit` を実行し、全テスト通過・型チェック通過を確認すること
+- push・PR作成前に、変更がプラグインとして正常動作することを実機確認すること（`/reload-plugins` 後に動作確認）
+- main への直接 push は禁止。必ず feature ブランチから PR を作成する

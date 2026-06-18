@@ -7,6 +7,7 @@ import {
   hookResult,
   loadCache,
   saveCache,
+  asciiRatio,
   createTranslateVocabHandler,
   type CallHaikuFn,
 } from "./vocab.js";
@@ -54,6 +55,25 @@ describe("parseVocabLine", () => {
 
   test("数字始まりの行を拒否する", () => {
     expect(parseVocabLine("123abc — 🔧 テスト, 💬 テスト")).toBeNull();
+  });
+});
+
+describe("asciiRatio", () => {
+  test("全て ASCII なら 1.0", () => {
+    expect(asciiRatio("hello world")).toBe(1.0);
+  });
+
+  test("全て非 ASCII なら 0.0", () => {
+    expect(asciiRatio("日本語テスト")).toBe(0.0);
+  });
+
+  test("混合テキストの比率を正しく計算する", () => {
+    const ratio = asciiRatio("hello世界");
+    expect(ratio).toBeCloseTo(5 / 7);
+  });
+
+  test("空文字列は 0", () => {
+    expect(asciiRatio("")).toBe(0);
   });
 });
 
@@ -140,6 +160,19 @@ describe("createTranslateVocabHandler", () => {
 
   afterEach(() => {
     rmSync(dir, { recursive: true, force: true });
+  });
+
+  test("非英語テキストで callHaiku を呼ばずスキップ", async () => {
+    const stub: CallHaikuFn = async () => {
+      throw new Error("should not be called");
+    };
+    const handler = createTranslateVocabHandler(cachePath, stub);
+    const result = await handler({
+      text: "日本語のテキストが大半を占める場合、英語の単語抽出は不要です。これは十分に長いテキストです。",
+    });
+    const msg = parseSystemMessage(result);
+    expect(msg).toBe("--- Vocab: skipped (non-English text) ---");
+    expect(existsSync(cachePath)).toBe(false);
   });
 
   test("テキスト短すぎで callHaiku を呼ばずスキップ", async () => {
