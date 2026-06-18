@@ -1,0 +1,7 @@
+{
+  "vocab-mcp": {
+    "type": "stdio",
+    "command": "bash",
+    "args": ["-c", "exec \"$0\" \"$1\"", "${CLAUDE_PLUGIN_ROOT}/scripts/start_vocab-mcp.sh", "${CLAUDE_PLUGIN_DATA}"]
+  }
+}

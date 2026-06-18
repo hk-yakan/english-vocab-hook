@@ -1,0 +1,5 @@
+{
+  "name": "english-vocab-hook",
+  "description": "Stop hook: extracts difficult English words from responses and shows Japanese translations as a vocabulary list",
+  "version": "1.0.0"
+}

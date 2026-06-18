@@ -1,0 +1,18 @@
+{
+  "name": "english-vocab-hook",
+  "owner": {
+    "name": "HIROKI KAMATA",
+    "email": "chloris.field@gmail.com"
+  },
+  "metadata": {
+    "description": "Claude Codeの応答から難しい英単語を自動抽出し日本語訳を表示するプラグイン"
+  },
+  "plugins": [
+    {
+      "name": "english-vocab-hook",
+      "version": "1.0.0",
+      "source": ".",
+      "description": "Stop hook: extracts difficult English words from responses and shows Japanese translations as a vocabulary list"
+    }
+  ]
+}

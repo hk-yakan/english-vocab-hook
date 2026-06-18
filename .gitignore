@@ -1,0 +1,11 @@
+node_modules/
+*.tsbuildinfo
+*.js.map
+.env
+.env.*
+!.env.example
+.DS_Store
+._*
+.bun
+.devenv/
+.devenv.flake.nix

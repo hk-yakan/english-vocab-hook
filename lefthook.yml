@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    typecheck:
+      glob: "*.{ts,tsx}"
+      run: cd vocab-mcp && tsc --noEmit
+    json-lint:
+      glob: "*.json"
+      run: |
+        for f in {staged_files}; do
+          python3 -m json.tool "$f" > /dev/null
+        done
+    test:
+      glob: "*.{ts,tsx}"
+      run: cd vocab-mcp && bun test
+    gitleaks:
+      run: gitleaks protect --staged

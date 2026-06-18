@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:english-vocab-hook:vocab-mcp",
+            "tool": "translate_vocab",
+            "input": { "text": "${last_assistant_message}" },
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}
