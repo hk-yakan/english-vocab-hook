@@ -39,6 +39,15 @@ export type CallHaikuFn = (
   knownWords: string[],
 ) => Promise<string>;
 
+export function asciiRatio(text: string): number {
+  if (text.length === 0) return 0;
+  let ascii = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (text.charCodeAt(i) < 128) ascii++;
+  }
+  return ascii / text.length;
+}
+
 export function createTranslateVocabHandler(
   cachePath: string,
   callHaiku: CallHaikuFn,
@@ -46,6 +55,10 @@ export function createTranslateVocabHandler(
   return async ({ text }: { text: string }) => {
     if (text.length < 30) {
       return hookResult("--- Vocab: skipped (text too short) ---");
+    }
+
+    if (asciiRatio(text) < 0.5) {
+      return hookResult("--- Vocab: skipped (non-English text) ---");
     }
 
     const cache = loadCache(cachePath);
