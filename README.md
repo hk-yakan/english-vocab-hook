@@ -15,7 +15,7 @@
 ## Install
 
 ```bash
-claude plugin marketplace add github:hk-yakan/english-vocab-hook
+claude plugin marketplace add hk-yakan/english-vocab-hook
 claude plugin install english-vocab-hook
 ```
 
