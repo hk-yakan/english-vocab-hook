@@ -4,13 +4,7 @@
 
 アシスタントの応答から難しい英単語 (CEFR B2+) を自動抽出し、技術訳と一般訳を表示します。プログラミングしながら、いつの間にかボキャブラリーが増えていく体験を。
 
-```
---- Vocab (1.2s) ---
-  ephemeral — 🔧 一時的な, 💬 はかない
-  ubiquitous — 🔧 ユビキタスな, 💬 どこにでもある
-  idempotent — 🔧 冪等な, 💬 何度やっても同じ結果
----
-```
+<img src="docs/res/ss.png" width="600" alt="Vocab banner screenshot">
 
 ## Install
 
