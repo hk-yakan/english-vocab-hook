@@ -8,7 +8,7 @@ Claude Code plugin: english-vocab-hook. Extracts difficult English vocabulary fr
 
 - `vocab-mcp/src/vocab.ts` — Core logic: parsing, caching, handler factory (testable, no side effects)
 - `vocab-mcp/src/index.ts` — MCP server wiring shell (env vars, Agent SDK, transport)
-- `hooks/hooks.json` — Stop hook, `mcp_tool` type calling `translate_vocab`
+- `skills/english-vocab/SKILL.md` — Skill 定義 (frontmatter hooks で Stop hook をスキル有効時のみ発火)
 - `.mcp.json` — MCP server launch config. `args` field passes `${CLAUDE_PLUGIN_DATA}` for cache dir
 - `scripts/start_vocab-mcp.sh` — Bootstrap script (bun install + exec)
 

@@ -17,15 +17,17 @@ API キー不要 — Claude Code の認証をそのまま使います。
 
 ## How It Works
 
-1. アシスタントが応答するたびに **Stop hook** が自動発火
-2. MCP サーバが Haiku モデルに単語抽出を依頼
-3. 🔧 技術/ドメイン訳 + 💬 一般訳 のペアでバナー表示
-4. 翻訳済み単語はキャッシュされ、次回から即座に表示
+1. ユーザーが `/english-vocab` スキルを実行して有効化
+2. 以降、アシスタントが応答するたびに **Stop hook** が発火
+3. MCP サーバが Haiku モデルに単語抽出を依頼
+4. 🔧 技術/ドメイン訳 + 💬 一般訳 のペアでバナー表示
+5. 翻訳済み単語はキャッシュされ、次回から即座に表示
 
 ```
-Stop hook → vocab-mcp (MCP server) → Haiku → vocab-cache.json
-                                                 ↓
-                                          systemMessage banner
+/english-vocab → Skill 有効化 → Stop hook 発火
+  → vocab-mcp (MCP server) → Haiku → vocab-cache.json
+                                           ↓
+                                    systemMessage banner
 ```
 
 ## Features
